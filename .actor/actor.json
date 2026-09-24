@@ -8,6 +8,9 @@
   "dockerfile": "./Dockerfile",
   "readme": "./README.md",
   "input": "./input_schema.json",
+  "defaultRunOptions": {
+    "timeoutSecs": 1800
+  },
   "storages": {
     "dataset": {
       "actorSpecification": 1,

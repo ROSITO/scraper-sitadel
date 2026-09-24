@@ -189,6 +189,10 @@ async function processDataset(
 ): Promise<{ processed: number; pushed: number; latestDate: string | null; stoppedEarly: boolean }> {
     const abortController = new AbortController();
     
+    // Safety limit: when maxItems is set, stop scanning after this many rows
+    // to avoid downloading huge files when matches are scarce
+    const maxRowsToScan = filters.maxItems ? Math.max(filters.maxItems * 10000, 50000) : undefined;
+    
     const response = await fetch(url, { signal: abortController.signal });
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -215,6 +219,16 @@ async function processDataset(
     try {
         for await (const row of parser as AsyncIterable<PermitRow>) {
             processed++;
+
+            // Safety check: stop if we've scanned too many rows (prevents full download with scarce matches)
+            if (maxRowsToScan && processed > maxRowsToScan) {
+                log.warning(`Scanned ${processed} rows but only found ${pushed} matches (wanted ${filters.maxItems}). Stopping to prevent timeout. Try broader filters.`);
+                stoppedEarly = true;
+                parser.destroy();
+                stream.destroy();
+                abortController.abort();
+                break;
+            }
 
             if (filters.maxItems && pushed >= filters.maxItems) {
                 log.info(`Reached maxItems limit (${filters.maxItems}), stopping stream early`);
