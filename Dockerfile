@@ -14,3 +14,5 @@ RUN npm --quiet set progress=false \
 COPY . ./
 
 RUN npm run build
+
+CMD ["node", "dist/src/main.js"]
