@@ -1,0 +1,118 @@
+{
+  "title": "Sitadel Building Permits Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "datasets": {
+      "title": "Datasets",
+      "type": "array",
+      "description": "Select which Sitadel datasets to extract",
+      "default": ["logements"],
+      "items": {
+        "type": "string",
+        "enum": ["logements", "locaux", "amenager", "demolir"]
+      },
+      "editor": "multiselect",
+      "prefill": ["logements"]
+    },
+    "departementCodes": {
+      "title": "Département codes",
+      "type": "array",
+      "description": "Filter by département codes (e.g. ['75', '13', '69']). Leave empty for all.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "communeInseeCodes": {
+      "title": "Commune INSEE codes",
+      "type": "array",
+      "description": "Filter by commune INSEE codes. Leave empty for all.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "typeDau": {
+      "title": "Type of authorization",
+      "type": "string",
+      "description": "Filter by authorization type",
+      "enum": ["", "PC", "DP", "PA", "PD"],
+      "enumTitles": ["All", "Permis de construire", "Déclaration préalable", "Permis d'aménager", "Permis de démolir"],
+      "editor": "select",
+      "default": ""
+    },
+    "dateAutorisationFrom": {
+      "title": "Authorization date from",
+      "type": "string",
+      "description": "Filter permits from this date (ISO format: YYYY-MM-DD)",
+      "editor": "textfield",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2023-01-01"
+    },
+    "dateAutorisationTo": {
+      "title": "Authorization date to",
+      "type": "string",
+      "description": "Filter permits until this date (ISO format: YYYY-MM-DD)",
+      "editor": "textfield",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2023-12-31"
+    },
+    "minSurfaceHab": {
+      "title": "Minimum habitable surface (m²)",
+      "type": "number",
+      "description": "Minimum habitable surface in square meters",
+      "editor": "number",
+      "minimum": 0
+    },
+    "minLogements": {
+      "title": "Minimum number of dwellings",
+      "type": "number",
+      "description": "Minimum number of housing units",
+      "editor": "number",
+      "minimum": 0
+    },
+    "onlyPersonnesMorales": {
+      "title": "Only legal entities (RGPD compliant)",
+      "type": "boolean",
+      "description": "Only export permits where the applicant is a legal entity (has SIREN). This is the RGPD-compliant default for lead generation.",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "onlyNewSinceLastRun": {
+      "title": "Only new since last run",
+      "type": "boolean",
+      "description": "Only extract permits that are newer than the last run (uses key-value store watermark)",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "maxItems": {
+      "title": "Maximum items",
+      "type": "number",
+      "description": "Maximum number of permits to extract (leave empty for unlimited)",
+      "editor": "number",
+      "minimum": 1
+    },
+    "includeFields": {
+      "title": "Field selection",
+      "type": "string",
+      "description": "Choose between minimal (lead-oriented) or full fields",
+      "enum": ["minimal", "full"],
+      "enumTitles": ["Minimal (leads)", "Full (all fields)"],
+      "editor": "select",
+      "default": "minimal"
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "Preview mode returns only aggregate counts (free); Extract mode exports full permits (paid per permit)",
+      "enum": ["extract", "preview"],
+      "enumTitles": ["Extract (paid per permit)", "Preview/Count (free)"],
+      "editor": "select",
+      "default": "extract"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,12 @@
+{
+  "datasets": ["logements"],
+  "departementCodes": ["75", "13"],
+  "typeDau": "PC",
+  "dateAutorisationFrom": "2023-01-01",
+  "dateAutorisationTo": "2024-12-31",
+  "minLogements": 5,
+  "onlyPersonnesMorales": true,
+  "maxItems": 100,
+  "includeFields": "minimal",
+  "mode": "extract"
+}

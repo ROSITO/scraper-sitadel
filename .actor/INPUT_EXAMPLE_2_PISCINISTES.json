@@ -1,0 +1,9 @@
+{
+  "datasets": ["logements"],
+  "departementCodes": ["13", "83", "84", "06"],
+  "dateAutorisationFrom": "2024-01-01",
+  "onlyPersonnesMorales": true,
+  "onlyNewSinceLastRun": false,
+  "includeFields": "minimal",
+  "mode": "extract"
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+apify_storage/
+storage/
+*.log
+.DS_Store
+.env
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+test-*.json

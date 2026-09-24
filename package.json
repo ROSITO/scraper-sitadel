@@ -1,0 +1,33 @@
+{
+  "name": "sitadel-building-permits",
+  "version": "1.0.0",
+  "description": "Apify Actor for French Sitadel building permits (open data)",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/src/main.js",
+    "test": "npm run build && node dist/src/test.js",
+    "dev": "tsc-watch --onSuccess \"node dist/src/main.js\""
+  },
+  "keywords": [
+    "apify",
+    "sitadel",
+    "france",
+    "building-permits",
+    "permis-construire",
+    "open-data"
+  ],
+  "author": "Apify Actor Developer",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apify": "^3.7.2",
+    "csv-parse": "^5.5.6",
+    "date-fns": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.0",
+    "tsc-watch": "^6.2.0"
+  }
+}

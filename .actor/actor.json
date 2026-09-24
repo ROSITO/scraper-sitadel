@@ -1,0 +1,44 @@
+{
+  "actorSpecification": 1,
+  "name": "sitadel-building-permits",
+  "title": "Sitadel FR Building Permits",
+  "version": "1.0.0",
+  "buildTag": "latest",
+  "environmentVariables": {},
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "input": "./.actor/input_schema.json",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Building Permits",
+      "description": "French Sitadel building permits (open data)",
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "description": "Building permits overview",
+          "transformation": {
+            "fields": [
+              "typeDau",
+              "numDau",
+              "dateAutorisation",
+              "commune",
+              "depCode",
+              "denomDemandeur",
+              "sirenDemandeur",
+              "surfacePlancher",
+              "nombreLogements"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "paidEvents": [
+    {
+      "name": "permit",
+      "description": "One building permit extracted and pushed to dataset",
+      "price": 0.01
+    }
+  ]
+}

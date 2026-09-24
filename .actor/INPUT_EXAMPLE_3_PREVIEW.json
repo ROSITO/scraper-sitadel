@@ -1,0 +1,9 @@
+{
+  "datasets": ["logements", "locaux"],
+  "departementCodes": ["75"],
+  "typeDau": "PC",
+  "dateAutorisationFrom": "2023-01-01",
+  "onlyPersonnesMorales": true,
+  "includeFields": "minimal",
+  "mode": "preview"
+}
