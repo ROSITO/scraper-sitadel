@@ -7,13 +7,14 @@
       "title": "Datasets",
       "type": "array",
       "description": "Select which Sitadel datasets to extract",
+      "editor": "select",
       "default": ["logements"],
+      "prefill": ["logements"],
       "items": {
         "type": "string",
-        "enum": ["logements", "locaux", "amenager", "demolir"]
-      },
-      "editor": "json",
-      "prefill": ["logements"]
+        "enum": ["logements", "locaux", "amenager", "demolir"],
+        "enumTitles": ["Logements", "Locaux", "Aménager", "Démolir"]
+      }
     },
     "departementCodes": {
       "title": "Département codes",
